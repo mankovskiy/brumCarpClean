@@ -1,0 +1,114 @@
+---
+import { REVIEWS } from '../data/site';
+---
+
+<section id="reviews" aria-labelledby="reviews-heading">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="label">Customer Reviews</span>
+      <h2 id="reviews-heading">What Our Customers Say</h2>
+      <div class="rating-summary">
+        <div class="stars" aria-hidden="true">
+          {[...Array(5)].map(() => (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" focusable="false">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          ))}
+        </div>
+        <span><strong>5.0 out of 5</strong> · Trusted local service · Birmingham</span>
+      </div>
+    </div>
+
+    <ul class="reviews-grid" role="list">
+      {REVIEWS.map(r => (
+        <li>
+          <article class="review-card">
+            <div class="review-stars" role="img" aria-label={`Rated ${r.rating} out of 5 stars`}>
+              {[...Array(5)].map((_, i) => (
+                <svg width="14" height="14" viewBox="0 0 24 24"
+                     fill={i < r.rating ? '#f59e0b' : '#e5e7eb'}
+                     aria-hidden="true" focusable="false">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              ))}
+            </div>
+
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+
+            <blockquote cite="#reviews">
+              <p>{r.text}</p>
+            </blockquote>
+
+            <footer class="review-footer">
+              <div class="reviewer-avatar" style={`background:${r.avatarBg}`} aria-hidden="true">
+                {r.initial}
+              </div>
+              <div>
+                <p class="reviewer-name">{r.name}</p>
+                <p class="reviewer-meta">
+                  <span>{r.location}</span>
+                  <span aria-hidden="true"> · </span>
+                  <span>{r.service}</span>
+                </p>
+              </div>
+            </footer>
+          </article>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+  section { padding: 5.5rem 0; background: #fff; }
+
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--navy); margin-bottom: 1rem; }
+
+  .rating-summary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.875rem; color: var(--muted);
+    background: #fefce8; border: 1px solid #fde68a;
+    padding: 0.45rem 1rem; border-radius: 100px;
+  }
+  .stars { display: flex; gap: 2px; }
+  .rating-summary strong { color: var(--navy); }
+
+  .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; list-style: none; }
+  @media (min-width: 640px)  { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .reviews-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .review-card {
+    background: var(--stone); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; height: 100%;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .review-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); transform: translateY(-3px); }
+
+  .review-stars { display: flex; gap: 2px; }
+
+  .quote-mark {
+    font-size: 3rem; line-height: 1; color: #bfdbfe;
+    font-family: Georgia, serif; font-weight: 700;
+    margin-bottom: -0.5rem; margin-top: -0.25rem;
+    user-select: none;
+  }
+
+  blockquote { flex: 1; }
+  blockquote p { font-size: 0.9rem; color: #374151; line-height: 1.72; }
+
+  .review-footer {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-top: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  }
+
+  .reviewer-avatar {
+    width: 36px; height: 36px; color: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.875rem; font-weight: 700; flex-shrink: 0;
+  }
+  .reviewer-name { font-size: 0.875rem; font-weight: 700; color: var(--navy); margin: 0; }
+  .reviewer-meta { font-size: 0.78rem; color: var(--muted); margin: 0.1rem 0 0; }
+</style>

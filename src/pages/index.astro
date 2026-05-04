@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import Process from '../components/Process.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Reviews from '../components/Reviews.astro';
+import Areas from '../components/Areas.astro';
+import FAQ from '../components/FAQ.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <!-- Skip to main content for screen readers and keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <Nav />
+
+  <main id="main-content">
+    <Hero />
+    <Services />
+    <BeforeAfter />
+    <Process />
+    <WhyUs />
+    <Reviews />
+    <Areas />
+    <FAQ />
+    <Contact />
+  </main>
+
+  <Footer />
+</Layout>

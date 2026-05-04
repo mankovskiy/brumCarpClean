@@ -1,0 +1,98 @@
+---
+import { WHY_US } from '../data/site';
+---
+
+<section aria-labelledby="why-us-heading">
+  <div class="container">
+    <div class="layout">
+
+      <div class="left-col">
+        <span class="label">Why FreshLine</span>
+        <h2 id="why-us-heading">Why Our Customers Choose Us</h2>
+        <p class="lead">
+          We're a local Birmingham cleaning company that takes real pride in the results we deliver.
+          No call centres, no national franchises — just a reliable local team who care.
+        </p>
+
+        <dl class="stat-row" aria-label="Key facts about FreshLine Cleaning">
+          {WHY_US.stats.map((stat, i) => (
+            <>
+              <div class="stat">
+                <dt class="stat-label">{stat.label}</dt>
+                <dd class="stat-value">{stat.value}</dd>
+              </div>
+              {i < WHY_US.stats.length - 1 && <div class="stat-divider" aria-hidden="true"></div>}
+            </>
+          ))}
+        </dl>
+
+        <div class="img-wrap">
+          <img
+            src={WHY_US.image}
+            alt={WHY_US.imageAlt}
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <ul class="right-col" role="list">
+        {WHY_US.features.map(f => (
+          <li class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)"
+                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div>
+              <h3>{f.title}</h3>
+              <p>{f.description}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  section { padding: 5.5rem 0; background: var(--stone); }
+
+  .layout { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+  @media (min-width: 1024px) { .layout { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; } }
+
+  .left-col { display: flex; flex-direction: column; gap: 1.75rem; }
+  .left-col h2 { font-size: clamp(1.75rem, 3.5vw, 2.6rem); color: var(--navy); margin-top: 0.4rem; }
+  .lead { font-size: 1rem; color: var(--muted); line-height: 1.75; }
+
+  .stat-row {
+    display: flex; align-items: center; gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .stat { text-align: center; }
+  .stat-value { display: block; font-size: 1.35rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+  .stat-label { display: block; font-size: 0.72rem; color: var(--muted); white-space: nowrap; font-weight: 400; }
+  .stat-divider { width: 1px; height: 36px; background: var(--border); flex-shrink: 0; }
+
+  .img-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1); aspect-ratio: 4/3; }
+  .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .right-col { display: flex; flex-direction: column; list-style: none; }
+
+  .feature { display: flex; gap: 1rem; padding: 1.3rem 0; border-bottom: 1px solid var(--border); }
+  .feature:last-child { border-bottom: none; }
+
+  .feature-icon {
+    width: 32px; height: 32px;
+    background: #eff6ff; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .feature h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+  .feature p  { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+</style>

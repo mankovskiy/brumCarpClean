@@ -1,0 +1,221 @@
+---
+import {
+  SITE_NAME, SITE_URL, META_TITLE, META_DESCRIPTION, OG_IMAGE_URL,
+  PHONE_RAW, EMAIL, FACEBOOK_URL, BUSINESS, SERVICES,
+} from '../data/site';
+
+interface Props {
+  title?:       string;
+  description?: string;
+  canonical?:   string;
+  ogImage?:     string;
+}
+
+const {
+  title       = META_TITLE,
+  description = META_DESCRIPTION,
+  canonical   = SITE_URL,
+  ogImage     = OG_IMAGE_URL,
+} = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type':    'LocalBusiness',
+  '@id':      canonical + '#business',
+  name:        SITE_NAME,
+  description: description,
+  url:         canonical,
+  telephone:   PHONE_RAW,
+  email:       EMAIL,
+  image:       ogImage,
+  logo:        canonical + 'favicon.svg',
+  priceRange:  BUSINESS.priceRange,
+  currenciesAccepted: 'GBP',
+  paymentAccepted:    'Cash, Bank Transfer',
+  address: {
+    '@type':         'PostalAddress',
+    addressLocality: BUSINESS.city,
+    addressRegion:   BUSINESS.region,
+    postalCode:      BUSINESS.postcode,
+    addressCountry:  BUSINESS.country,
+  },
+  geo: {
+    '@type':    'GeoCoordinates',
+    latitude:   BUSINESS.lat,
+    longitude:  BUSINESS.lng,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Birmingham'      },
+    { '@type': 'City', name: 'Solihull'        },
+    { '@type': 'City', name: 'Sutton Coldfield'},
+    { '@type': 'City', name: 'West Bromwich'   },
+    { '@type': 'City', name: 'Redditch'        },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name:    'Cleaning Services',
+    itemListElement: SERVICES.map(s => ({
+      '@type':       'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, areaServed: BUSINESS.city },
+    })),
+  },
+  openingHoursSpecification: [
+    {
+      '@type':    'OpeningHoursSpecification',
+      dayOfWeek:  ['Monday','Tuesday','Wednesday','Thursday','Friday'],
+      opens:  '08:00',
+      closes: '19:00',
+    },
+    {
+      '@type':    'OpeningHoursSpecification',
+      dayOfWeek:  ['Saturday','Sunday'],
+      opens:  '09:00',
+      closes: '17:00',
+    },
+  ],
+  sameAs: [FACEBOOK_URL],
+};
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.pexels.com" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <meta name="geo.region"   content="GB-WMD" />
+    <meta name="geo.placename" content={BUSINESS.city} />
+    <meta name="geo.position" content={`${BUSINESS.lat};${BUSINESS.lng}`} />
+    <meta name="ICBM"         content={`${BUSINESS.lat}, ${BUSINESS.lng}`} />
+
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonical} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt"   content={`${SITE_NAME} — Carpet & Upholstery Cleaning in Birmingham`} />
+    <meta property="og:locale"      content="en_GB" />
+    <meta property="og:site_name"   content={SITE_NAME} />
+
+    <meta name="twitter:card"       content="summary_large_image" />
+    <meta name="twitter:title"      content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"      content={ogImage} />
+    <meta name="twitter:image:alt"  content={`${SITE_NAME} — Carpet & Upholstery Cleaning in Birmingham`} />
+
+    <meta name="theme-color"   content="#0f172a" />
+    <meta name="color-scheme"  content="light" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --navy:    #0f172a;
+    --navy-8:  #1e293b;
+    --navy-7:  #334155;
+    --blue:    #1d4ed8;
+    --blue-l:  #2563eb;
+    --blue-xl: #3b82f6;
+    --green:   #059669;
+    --green-l: #10b981;
+    --green-xl:#34d399;
+    --stone:   #f8f7f5;
+    --border:  #e5e7eb;
+    --text:    #111827;
+    --muted:   #6b7280;
+    --radius:  12px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family:
+      system-ui, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  img  { display: block; max-width: 100%; height: auto; }
+  a    { text-decoration: none; color: inherit; }
+
+  :focus-visible {
+    outline: 3px solid var(--blue-xl);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  :focus:not(:focus-visible) { outline: none; }
+
+  [id] { scroll-margin-top: 80px; }
+
+  .label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue-l);
+    margin-bottom: 0.75rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+  @media (min-width: 640px)  { .container { padding: 0 1.75rem; } }
+  @media (min-width: 1280px) { .container { padding: 0 2.5rem; } }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    background: var(--blue);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0 0 8px 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    z-index: 999;
+    transition: top 0.15s;
+  }
+  .skip-link:focus { top: 0; }
+</style>

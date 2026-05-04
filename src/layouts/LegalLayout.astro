@@ -1,0 +1,235 @@
+---
+import Layout from './Layout.astro';
+import { SITE_NAME, SITE_URL, PHONE_DISPLAY, PHONE_RAW, EMAIL } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+}
+
+const { title, description, slug } = Astro.props;
+const canonical = `${SITE_URL}${slug}/`;
+const year = new Date().getFullYear();
+---
+
+<Layout title={`${title} | ${SITE_NAME}`} description={description} canonical={canonical}>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="legal-header">
+    <div class="container">
+      <a href="/" class="logo" aria-label={`${SITE_NAME} — return to homepage`}>
+        <div class="logo-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <span>FreshLine<span class="dot" aria-hidden="true">.</span></span>
+      </a>
+      <a href="/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back to homepage
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content" class="legal-main">
+    <div class="container">
+      <div class="legal-body">
+        <h1>{title}</h1>
+        <slot />
+      </div>
+    </div>
+  </main>
+
+  <footer class="legal-footer">
+    <div class="container">
+      <nav aria-label="Legal pages">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span aria-hidden="true">·</span>
+        <a href="/terms/">Terms &amp; Conditions</a>
+        <span aria-hidden="true">·</span>
+        <a href="/cookies/">Cookie Policy</a>
+      </nav>
+      <p>&copy; {year} {SITE_NAME} · Birmingham &amp; West Midlands ·
+        <a href={`tel:${PHONE_RAW}`}>{PHONE_DISPLAY}</a> ·
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      </p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* Header */
+  .legal-header {
+    background: var(--navy);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .legal-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    border-radius: 6px;
+  }
+  .logo:hover { color: rgba(255,255,255,0.85); }
+  .logo-icon {
+    width: 28px; height: 28px;
+    background: var(--blue);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .dot { color: var(--green-xl); }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.65);
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: #fff; }
+
+  /* Main content */
+  .legal-main {
+    padding: 4rem 0 5rem;
+    background: #fff;
+    min-height: 60vh;
+  }
+
+  .legal-body {
+    max-width: 760px;
+  }
+
+  .legal-body h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Styles applied to the slotted content */
+  .legal-body :global(.last-updated) {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  .legal-body :global(h2) {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 2.5rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .legal-body :global(h3) {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy-7);
+    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .legal-body :global(p) {
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .legal-body :global(ul),
+  .legal-body :global(ol) {
+    margin: 0.5rem 0 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .legal-body :global(li) {
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.7;
+  }
+
+  .legal-body :global(a) {
+    color: var(--blue-l);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .legal-body :global(a:hover) { color: var(--blue); }
+
+  .legal-body :global(strong) {
+    font-weight: 700;
+    color: var(--navy-7);
+  }
+
+  .legal-body :global(.notice-box) {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .legal-body :global(.notice-box p) {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #0c4a6e;
+  }
+
+  /* Footer */
+  .legal-footer {
+    background: #060d1a;
+    padding: 1.75rem 0;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.8rem;
+  }
+  .legal-footer .container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  @media (min-width: 768px) {
+    .legal-footer .container {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .legal-footer nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .legal-footer a {
+    color: rgba(255,255,255,0.55);
+    transition: color 0.15s;
+  }
+  .legal-footer a:hover { color: #fff; }
+</style>

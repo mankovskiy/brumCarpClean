@@ -1,0 +1,210 @@
+---
+import { WA_URL, PHONE_RAW, PHONE_DISPLAY, EMAIL, NAV_LINKS } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer role="contentinfo">
+  <div class="container">
+
+    <div class="footer-main">
+
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <a href="#home" class="logo" aria-label="FreshLine Cleaning — return to top">
+          <div class="logo-icon" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white"
+                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <span>FreshLine<span class="dot" aria-hidden="true">.</span></span>
+        </a>
+        <p>
+          Professional carpet and upholstery cleaning in Birmingham and the West Midlands.
+          Local, reliable and fairly priced.
+        </p>
+        <address class="contact-details" aria-label="Contact information">
+          <a href={`tel:${PHONE_RAW}`} aria-label={`Call ${PHONE_DISPLAY}`}>{PHONE_DISPLAY}</a>
+          <span aria-hidden="true">&nbsp;·&nbsp;</span>
+          <a href={`mailto:${EMAIL}`} aria-label={`Email ${EMAIL}`}>{EMAIL}</a>
+        </address>
+      </div>
+
+      <!-- Navigation column -->
+      <nav aria-label="Footer navigation">
+        <p class="col-label" id="footer-nav-label">Navigation</p>
+        <ul aria-labelledby="footer-nav-label">
+          {NAV_LINKS.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- CTA column -->
+      <div class="footer-cta">
+        <p class="col-label">Get a Free Quote</p>
+        <p>Send photos on WhatsApp for a fast, no-obligation quote.</p>
+        <a
+          href={WA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="wa-btn"
+          aria-label="Get a free WhatsApp quote — opens WhatsApp"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+               aria-hidden="true" focusable="false">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.117 1.529 5.845L0 24l6.335-1.658A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.006-1.371l-.36-.213-3.76.985.998-3.658-.235-.375A9.818 9.818 0 1 1 12 21.818z"/>
+          </svg>
+          WhatsApp Quote
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom strip -->
+    <div class="footer-bottom">
+      <p>&copy; {year} FreshLine Cleaning · Birmingham &amp; West Midlands</p>
+      <nav class="legal-links" aria-label="Legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span aria-hidden="true">·</span>
+        <a href="/terms/">Terms &amp; Conditions</a>
+        <span aria-hidden="true">·</span>
+        <a href="/cookies/">Cookie Policy</a>
+      </nav>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: #060d1a;
+    color: rgba(255,255,255,0.5);
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 1.75rem;
+  }
+  @media (min-width: 640px)  { .footer-main { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .footer-main { grid-template-columns: 2fr 1fr 1.5fr; } }
+
+  /* Brand */
+  .footer-brand { display: flex; flex-direction: column; gap: 1rem; }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.15rem 0;
+  }
+  .logo:hover { color: rgba(255,255,255,0.85); }
+  .logo-icon {
+    width: 30px; height: 30px;
+    background: var(--blue);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .dot { color: var(--green-xl); }
+
+  .footer-brand p {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    max-width: 280px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .contact-details {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    font-style: normal;
+  }
+  .contact-details a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    transition: color 0.15s;
+  }
+  .contact-details a:hover { color: #fff; }
+  .contact-details span { color: rgba(255,255,255,0.25); }
+
+  /* Nav */
+  .col-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+  nav ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  nav a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.15s;
+    padding: 0.15rem 0;
+    display: inline-block;
+  }
+  nav a:hover { color: #fff; }
+
+  /* CTA column */
+  .footer-cta { display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-cta p:not(.col-label) {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--green);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.7rem 1.25rem;
+    border-radius: 8px;
+    align-self: flex-start;
+    min-height: 44px;
+    transition: background 0.18s;
+  }
+  .wa-btn:hover { background: var(--green-l); }
+
+  /* Bottom */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.22);
+  }
+
+  .legal-links {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .legal-links a {
+    color: rgba(255,255,255,0.35);
+    transition: color 0.15s;
+  }
+  .legal-links a:hover { color: rgba(255,255,255,0.7); }
+</style>
