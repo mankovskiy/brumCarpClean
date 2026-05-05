@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#1e3a5f"/>
+  <rect x="0" y="0" width="1920" height="1080" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+  <!-- diagonal cross lines to indicate placeholder -->
+  <line x1="0" y1="0" x2="1920" y2="1080" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <line x1="1920" y1="0" x2="0" y2="1080" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- label -->
+  <text x="960" y="528" font-family="system-ui,sans-serif" font-size="22"
+        fill="rgba(255,255,255,0.55)" text-anchor="middle" dominant-baseline="middle"
+        font-weight="600">Hero — Carpet & Upholstery Cleaning</text>
+  <text x="960" y="560" font-family="system-ui,sans-serif" font-size="16"
+        fill="rgba(255,255,255,0.3)" text-anchor="middle" dominant-baseline="middle">
+    Replace with final image
+  </text>
+</svg>

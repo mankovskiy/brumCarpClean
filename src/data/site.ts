@@ -78,8 +78,8 @@ export const NAV_LINKS = [
 // ------------------------------------------------------------
 
 export const HERO = {
-  // Background photo — replace with your own image URL or a path like /images/hero.jpg
-  image: 'https://images.pexels.com/photos/4686826/pexels-photo-4686826.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+  // Background photo — replace /images/hero-main.svg with your own image (e.g. /images/hero-main.jpg)
+  image: '/images/hero-main.svg',
   heading: 'Professional Carpet & Upholstery Cleaning in Birmingham',
   subheading: 'Carpets, sofas, mattresses, stairs and end-of-tenancy cleaning. Send us photos on WhatsApp for a fast, no-obligation quote.',
   trustPoints: [
@@ -100,7 +100,7 @@ export const SERVICES = [
   {
     title:       'Carpet Cleaning',
     description: 'Hot-water extraction deep cleaning for all carpet types. Removes embedded dirt, allergens and tough stains.',
-    image:       'https://images.pexels.com/photos/4239037/pexels-photo-4239037.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+    image:       '/images/service-carpet.svg',
     imageAlt:    'Clean, freshly vacuumed carpet in a living room',
     tag:         'Most popular', // set to null to hide the badge
     eager:       true,           // true = loads immediately (use for the first 3 cards only)
@@ -108,7 +108,7 @@ export const SERVICES = [
   {
     title:       'Sofa & Upholstery',
     description: 'Specialist cleaning for sofas, armchairs and fabric furniture. Safe across all upholstery types.',
-    image:       'https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+    image:       '/images/service-sofa.svg',
     imageAlt:    'Clean grey fabric sofa in a modern living room',
     tag:         null,
     eager:       true,
@@ -116,7 +116,7 @@ export const SERVICES = [
   {
     title:       'Mattress Cleaning',
     description: "Hygienic deep-clean to remove dust mites, stains and odours. For a healthier night's sleep.",
-    image:       'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+    image:       '/images/service-mattress.svg',
     imageAlt:    'Clean white mattress with fresh bedding on a bed frame',
     tag:         null,
     eager:       true,
@@ -124,7 +124,7 @@ export const SERVICES = [
   {
     title:       'Stairs & Landing',
     description: 'Specialist stair attachments tackle heavy-traffic areas and tight spaces other cleaners miss.',
-    image:       'https://images.pexels.com/photos/1029243/pexels-photo-1029243.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+    image:       '/images/service-stairs.svg',
     imageAlt:    'Carpeted staircase in a residential home',
     tag:         null,
     eager:       false,
@@ -132,7 +132,7 @@ export const SERVICES = [
   {
     title:       'End of Tenancy',
     description: "Professional end-of-tenancy carpet cleaning to meet letting agency standards and protect your deposit.",
-    image:       'https://images.pexels.com/photos/4239013/pexels-photo-4239013.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+    image:       '/images/service-end-of-tenancy.svg',
     imageAlt:    'Empty living room ready for end-of-tenancy inspection',
     tag:         'Landlords & tenants',
     eager:       false,
@@ -140,7 +140,7 @@ export const SERVICES = [
   {
     title:       'Pet Stain & Odour',
     description: 'Enzyme-based treatment that neutralises pet urine odours and stains at the source — not just the surface.',
-    image:       'https://images.pexels.com/photos/1741236/pexels-photo-1741236.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+    image:       '/images/service-pet-stain.svg',
     imageAlt:    'Clean carpet in a home with pets',
     tag:         null,
     eager:       false,
@@ -159,11 +159,11 @@ export const BEFORE_AFTER = [
     label:    'Living Room Carpet',
     location: 'Kings Norton, Birmingham',
     before: {
-      src: 'https://images.pexels.com/photos/4246097/pexels-photo-4246097.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+      src: '/images/before-carpet-1.svg',
       alt: 'Stained and dirty carpet before professional cleaning',
     },
     after: {
-      src: 'https://images.pexels.com/photos/4239037/pexels-photo-4239037.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+      src: '/images/after-carpet-1.svg',
       alt: 'Clean, fresh carpet after professional cleaning',
     },
   },
@@ -171,11 +171,11 @@ export const BEFORE_AFTER = [
     label:    'Fabric Sofa',
     location: 'Harborne, Birmingham',
     before: {
-      src: 'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+      src: '/images/before-sofa-1.svg',
       alt: 'Stained fabric sofa before upholstery cleaning',
     },
     after: {
-      src: 'https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+      src: '/images/after-sofa-1.svg',
       alt: 'Clean fabric sofa after upholstery cleaning',
     },
   },
@@ -183,11 +183,11 @@ export const BEFORE_AFTER = [
     label:    'Stair Carpet',
     location: 'Selly Oak, Birmingham',
     before: {
-      src: 'https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+      src: '/images/before-stairs-1.svg',
       alt: 'Worn and dirty stair carpet before cleaning',
     },
     after: {
-      src: 'https://images.pexels.com/photos/1029243/pexels-photo-1029243.jpeg?auto=compress&cs=tinysrgb&w=700&h=440&fit=crop',
+      src: '/images/after-stairs-1.svg',
       alt: 'Clean, refreshed stair carpet after professional cleaning',
     },
   },
@@ -228,7 +228,7 @@ export const WHY_US = {
     { value: '5★',       label: 'Average rating'  },
     { value: 'Same day', label: 'Quotes'          },
   ],
-  image: 'https://images.pexels.com/photos/4107274/pexels-photo-4107274.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+  image: '/images/about-team.svg',
   imageAlt: 'Professional cleaning technician using hot-water extraction equipment on a carpet',
   features: [
     { title: 'Professional Equipment',  description: 'Powerful hot-water extraction machines — the industry gold standard for deep, thorough results.' },
