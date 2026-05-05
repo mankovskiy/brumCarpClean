@@ -78,7 +78,7 @@ export const NAV_LINKS = [
 
 export const HERO = {
   // Background photo — replace /images/hero-main.svg with your own image (e.g. /images/hero-main.jpg)
-  image: "/public/images/hero-main.png",
+  image: "/public/images/hero-main.webp",
   heading: "Professional Carpet & Upholstery Cleaning in Birmingham",
   subheading:
     "Carpets, sofas, mattresses, stairs and end-of-tenancy cleaning. Send us photos on WhatsApp for a fast, no-obligation quote.",
